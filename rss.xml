@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>putyy</title>
+    <link>https://putyy.com/</link>
+    <description>记录技术、写作与那些值得慢慢想清楚的事情。</description>
+    <language>zh-CN</language>
+    <item>
+      <title>Expo引入react-native-image-crop-picker</title>
+      <link>https://putyy.com/blog/legacy-100/</link>
+      <guid>https://putyy.com/blog/legacy-100/</guid>
+      <description>Expo引入react-native-image-crop-picker</description>
+      <pubDate>Thu, 26 Sep 2024 17:02:20 +0800</pubDate>
+    </item>
+    <item>
+      <title>Expo引入nativewind，一些组件的className无效</title>
+      <link>https://putyy.com/blog/legacy-99/</link>
+      <guid>https://putyy.com/blog/legacy-99/</guid>
+      <description>Expo引入nativewind，一些组件的className无效</description>
+      <pubDate>Thu, 26 Sep 2024 15:43:56 +0800</pubDate>
+    </item>
+    <item>
+      <title>Expo本地构建android apk</title>
+      <link>https://putyy.com/blog/legacy-98/</link>
+      <guid>https://putyy.com/blog/legacy-98/</guid>
+      <description>expo不使用eas 如何构建安卓安装包</description>
+      <pubDate>Thu, 26 Sep 2024 15:22:16 +0800</pubDate>
+    </item>
+    <item>
+      <title>uniapp swiper长列表优化，纵享丝滑</title>
+      <link>https://putyy.com/blog/legacy-95/</link>
+      <guid>https://putyy.com/blog/legacy-95/</guid>
+      <description>处理长列表卡顿</description>
+      <pubDate>Thu, 11 Apr 2024 21:10:55 +0800</pubDate>
+    </item>
+    <item>
+      <title>2024，我写了一个博客</title>
+      <link>https://putyy.com/blog/legacy-94/</link>
+      <guid>https://putyy.com/blog/legacy-94/</guid>
+      <description>作为一个程序员是否应该写一个属于自己的博客呢？</description>
+      <pubDate>Mon, 25 Mar 2024 20:30:45 +0800</pubDate>
+    </item>
+    <item>
+      <title>检测域名是否被微信屏蔽，链接是否可以在微信客户端中打开</title>
+      <link>https://putyy.com/blog/legacy-93/</link>
+      <guid>https://putyy.com/blog/legacy-93/</guid>
+      <description>检测域名是否被微信屏蔽，链接是否可以在微信客户端中打开</description>
+      <pubDate>Wed, 01 Nov 2023 22:54:03 +0800</pubDate>
+    </item>
+    <item>
+      <title>命令行设置代理</title>
+      <link>https://putyy.com/blog/legacy-92/</link>
+      <guid>https://putyy.com/blog/legacy-92/</guid>
+      <description>win命令行代理</description>
+      <pubDate>Mon, 25 Sep 2023 19:08:30 +0800</pubDate>
+    </item>
+    <item>
+      <title>scss中自定义函数</title>
+      <link>https://putyy.com/blog/legacy-91/</link>
+      <guid>https://putyy.com/blog/legacy-91/</guid>
+      <description>scss中通过定义全局函数，根据环境变量获取资源地址</description>
+      <pubDate>Thu, 02 Mar 2023 20:39:42 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mac wireshark报The capture session could not be initiated 错误</title>
+      <link>https://putyy.com/blog/legacy-90/</link>
+      <guid>https://putyy.com/blog/legacy-90/</guid>
+      <description>Mac wireshark报The capture session could not be initiated 错误</description>
+      <pubDate>Thu, 20 Oct 2022 16:33:51 +0800</pubDate>
+    </item>
+    <item>
+      <title>vue3+vite 本地代理</title>
+      <link>https://putyy.com/blog/legacy-88/</link>
+      <guid>https://putyy.com/blog/legacy-88/</guid>
+      <description>记录下</description>
+      <pubDate>Sat, 08 Oct 2022 09:26:21 +0800</pubDate>
+    </item>
+    <item>
+      <title>electron常见问题整理</title>
+      <link>https://putyy.com/blog/legacy-87/</link>
+      <guid>https://putyy.com/blog/legacy-87/</guid>
+      <description>electron常见问题整理</description>
+      <pubDate>Sat, 03 Sep 2022 23:18:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>git忽略文件</title>
+      <link>https://putyy.com/blog/legacy-86/</link>
+      <guid>https://putyy.com/blog/legacy-86/</guid>
+      <description>记录下git忽略文件</description>
+      <pubDate>Fri, 02 Sep 2022 14:49:11 +0800</pubDate>
+    </item>
+    <item>
+      <title>MAC程序员办公软件合集</title>
+      <link>https://putyy.com/blog/legacy-85/</link>
+      <guid>https://putyy.com/blog/legacy-85/</guid>
+      <description>记录一下平时使用mac系统以来用到的软件</description>
+      <pubDate>Wed, 24 Aug 2022 09:45:36 +0800</pubDate>
+    </item>
+    <item>
+      <title>uniapp隐藏自带顶部</title>
+      <link>https://putyy.com/blog/legacy-84/</link>
+      <guid>https://putyy.com/blog/legacy-84/</guid>
+      <description>uniapp隐藏自带顶部</description>
+      <pubDate>Thu, 18 Aug 2022 10:51:04 +0800</pubDate>
+    </item>
+    <item>
+      <title>如何读取.env到结构体？</title>
+      <link>https://putyy.com/blog/legacy-82/</link>
+      <guid>https://putyy.com/blog/legacy-82/</guid>
+      <description>简单实现读取.env环境文件，根据结构体tag解析到对应结构体,实现简单配置文件服务</description>
+      <pubDate>Tue, 05 Jul 2022 11:08:15 +0800</pubDate>
+    </item>
+    <item>
+      <title>gin 获取form多维数组问题</title>
+      <link>https://putyy.com/blog/legacy-81/</link>
+      <guid>https://putyy.com/blog/legacy-81/</guid>
+      <description>gin无法获取form多维数组问题怎么处理？</description>
+      <pubDate>Fri, 24 Jun 2022 15:12:56 +0800</pubDate>
+    </item>
+    <item>
+      <title>微信小程序scroll-view组件无法触底？</title>
+      <link>https://putyy.com/blog/legacy-80/</link>
+      <guid>https://putyy.com/blog/legacy-80/</guid>
+      <description>微信小程序scroll-view组件设置高度</description>
+      <pubDate>Tue, 14 Jun 2022 11:07:31 +0800</pubDate>
+    </item>
+    <item>
+      <title>opencache配置记录</title>
+      <link>https://putyy.com/blog/legacy-79/</link>
+      <guid>https://putyy.com/blog/legacy-79/</guid>
+      <description>opencache如何配置？</description>
+      <pubDate>Fri, 20 May 2022 17:21:22 +0800</pubDate>
+    </item>
+    <item>
+      <title>go get更换源</title>
+      <link>https://putyy.com/blog/legacy-78/</link>
+      <guid>https://putyy.com/blog/legacy-78/</guid>
+      <description>记录下go get更换源</description>
+      <pubDate>Thu, 12 May 2022 17:15:51 +0800</pubDate>
+    </item>
+    <item>
+      <title>Linux系统架构信息</title>
+      <link>https://putyy.com/blog/legacy-77/</link>
+      <guid>https://putyy.com/blog/legacy-77/</guid>
+      <description>记录一下Linux系统架构、Linux版本号查看</description>
+      <pubDate>Thu, 12 May 2022 17:04:56 +0800</pubDate>
+    </item>
+    <item>
+      <title>laravel-admin  Grid类display方法传入闭包调用不到本类的方法？</title>
+      <link>https://putyy.com/blog/legacy-76/</link>
+      <guid>https://putyy.com/blog/legacy-76/</guid>
+      <description>laravel-admin Grid display方法传入闭包调用不到本类的方法？</description>
+      <pubDate>Tue, 22 Mar 2022 17:21:42 +0800</pubDate>
+    </item>
+    <item>
+      <title>select</title>
+      <link>https://putyy.com/blog/legacy-75/</link>
+      <guid>https://putyy.com/blog/legacy-75/</guid>
+      <description>通过 select 可以监听 channel 上的数据流动。</description>
+      <pubDate>Tue, 22 Feb 2022 15:17:24 +0800</pubDate>
+    </item>
+    <item>
+      <title>Nginx常用配置</title>
+      <link>https://putyy.com/blog/legacy-73/</link>
+      <guid>https://putyy.com/blog/legacy-73/</guid>
+      <description>Nginx常用配置记录</description>
+      <pubDate>Mon, 10 Jan 2022 17:16:07 +0800</pubDate>
+    </item>
+    <item>
+      <title>gitlab仓库迁移</title>
+      <link>https://putyy.com/blog/legacy-72/</link>
+      <guid>https://putyy.com/blog/legacy-72/</guid>
+      <description>gitlab仓库迁移</description>
+      <pubDate>Mon, 10 Jan 2022 17:00:56 +0800</pubDate>
+    </item>
+    <item>
+      <title>Linux创建用户及权限划分</title>
+      <link>https://putyy.com/blog/legacy-71/</link>
+      <guid>https://putyy.com/blog/legacy-71/</guid>
+      <description>Linux权限划分随记</description>
+      <pubDate>Mon, 10 Jan 2022 16:54:29 +0800</pubDate>
+    </item>
+    <item>
+      <title>windows Hyper-V下安装centos 设置静态内网IP(内网互通)、可以ping外网</title>
+      <link>https://putyy.com/blog/legacy-70/</link>
+      <guid>https://putyy.com/blog/legacy-70/</guid>
+      <description>windows Hyper-V下安装centos 设置静态内网IP(内网互通)、可以ping外网</description>
+      <pubDate>Mon, 10 Jan 2022 16:49:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>linux开机自启</title>
+      <link>https://putyy.com/blog/legacy-69/</link>
+      <guid>https://putyy.com/blog/legacy-69/</guid>
+      <description>linux开机自启记录</description>
+      <pubDate>Mon, 10 Jan 2022 16:31:32 +0800</pubDate>
+    </item>
+    <item>
+      <title>ps命令</title>
+      <link>https://putyy.com/blog/legacy-68/</link>
+      <guid>https://putyy.com/blog/legacy-68/</guid>
+      <description>ps命令随记</description>
+      <pubDate>Mon, 10 Jan 2022 15:51:52 +0800</pubDate>
+    </item>
+    <item>
+      <title>使用秘钥登录Linux主机</title>
+      <link>https://putyy.com/blog/legacy-67/</link>
+      <guid>https://putyy.com/blog/legacy-67/</guid>
+      <description>秘钥登录Linux主机随记</description>
+      <pubDate>Mon, 10 Jan 2022 15:38:28 +0800</pubDate>
+    </item>
+    <item>
+      <title>python多线程随记</title>
+      <link>https://putyy.com/blog/legacy-61/</link>
+      <guid>https://putyy.com/blog/legacy-61/</guid>
+      <description>python多线程随记</description>
+      <pubDate>Mon, 10 Jan 2022 13:42:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>记录一下composer遇见的一些问题</title>
+      <link>https://putyy.com/blog/legacy-60/</link>
+      <guid>https://putyy.com/blog/legacy-60/</guid>
+      <description>记录一下composer遇见的一些问题</description>
+      <pubDate>Wed, 15 Sep 2021 19:15:53 +0800</pubDate>
+    </item>
+    <item>
+      <title>git常用命令</title>
+      <link>https://putyy.com/blog/legacy-59/</link>
+      <guid>https://putyy.com/blog/legacy-59/</guid>
+      <description>整理一下常用的git命令</description>
+      <pubDate>Wed, 28 Jul 2021 18:08:40 +0800</pubDate>
+    </item>
+    <item>
+      <title>php-fpm容器化部署</title>
+      <link>https://putyy.com/blog/legacy-58/</link>
+      <guid>https://putyy.com/blog/legacy-58/</guid>
+      <description>docker-swarm部署php-fpm项目</description>
+      <pubDate>Mon, 26 Jul 2021 17:46:29 +0800</pubDate>
+    </item>
+    <item>
+      <title>Docker-Swarm实践记录</title>
+      <link>https://putyy.com/blog/legacy-57/</link>
+      <guid>https://putyy.com/blog/legacy-57/</guid>
+      <description>docker-swarm实践记录,docker-swarm问题整理</description>
+      <pubDate>Wed, 21 Jul 2021 10:53:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>PHP-FPM的一些配置记录</title>
+      <link>https://putyy.com/blog/legacy-56/</link>
+      <guid>https://putyy.com/blog/legacy-56/</guid>
+      <description>对php-fpm的一些配置记录！</description>
+      <pubDate>Fri, 23 Apr 2021 14:38:16 +0800</pubDate>
+    </item>
+    <item>
+      <title>记录下goaccess分析nginx日志</title>
+      <link>https://putyy.com/blog/legacy-55/</link>
+      <guid>https://putyy.com/blog/legacy-55/</guid>
+      <description>记录下定时分析的脚本</description>
+      <pubDate>Sat, 15 Aug 2020 11:28:39 +0800</pubDate>
+    </item>
+    <item>
+      <title>格式化json、html展示json数据</title>
+      <link>https://putyy.com/blog/legacy-54/</link>
+      <guid>https://putyy.com/blog/legacy-54/</guid>
+      <description>格式化json、html展示json数据</description>
+      <pubDate>Sat, 18 Jul 2020 22:00:45 +0800</pubDate>
+    </item>
+    <item>
+      <title>mysql分表的一些方案</title>
+      <link>https://putyy.com/blog/legacy-53/</link>
+      <guid>https://putyy.com/blog/legacy-53/</guid>
+      <description>简述mysql分表的一些方法，简单描述一下而已。</description>
+      <pubDate>Sun, 21 Jun 2020 13:55:55 +0800</pubDate>
+    </item>
+    <item>
+      <title>加速国外网站访问除了vpn还有啥方法？</title>
+      <link>https://putyy.com/blog/legacy-52/</link>
+      <guid>https://putyy.com/blog/legacy-52/</guid>
+      <description>加速国外网站访问除了vpn还有啥方法？</description>
+      <pubDate>Wed, 20 May 2020 09:05:31 +0800</pubDate>
+    </item>
+    <item>
+      <title>编译文件迁移之Docker镜像瘦身</title>
+      <link>https://putyy.com/blog/legacy-51/</link>
+      <guid>https://putyy.com/blog/legacy-51/</guid>
+      <description>Dockerfile瘦身之迁移编译文件</description>
+      <pubDate>Thu, 14 May 2020 21:40:21 +0800</pubDate>
+    </item>
+    <item>
+      <title>Frp内网穿透搭建</title>
+      <link>https://putyy.com/blog/legacy-50/</link>
+      <guid>https://putyy.com/blog/legacy-50/</guid>
+      <description>frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https协议。</description>
+      <pubDate>Thu, 02 Apr 2020 09:15:23 +0800</pubDate>
+    </item>
+    <item>
+      <title>hyperf OR Laravel创建Model命令</title>
+      <link>https://putyy.com/blog/legacy-48/</link>
+      <guid>https://putyy.com/blog/legacy-48/</guid>
+      <description>hyperflaravel创建Model命令行，可以创建整个数据库表的命令行，当然也可以一个个创建。。自从之前服务器到期丢了几篇文章，时隔不知多久，反正就是好久没写文章了，所以就水一篇文章把, 免得忘了自己还有个博客网！</description>
+      <pubDate>Fri, 20 Mar 2020 16:12:22 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mysql用户管理 and 权限设置</title>
+      <link>https://putyy.com/blog/legacy-47/</link>
+      <guid>https://putyy.com/blog/legacy-47/</guid>
+      <description>开发过程中，避免不了使用mysql！试想、如果你是管理你会把root账号密码给新员工吗？所以抽了点时间，记录下mysql用户管理及权限设置吧！</description>
+      <pubDate>Wed, 20 Nov 2019 15:51:29 +0800</pubDate>
+    </item>
+    <item>
+      <title>javascript导出csv</title>
+      <link>https://putyy.com/blog/legacy-43/</link>
+      <guid>https://putyy.com/blog/legacy-43/</guid>
+      <description>简单记录下前端导出csv！</description>
+      <pubDate>Wed, 30 Oct 2019 12:07:32 +0800</pubDate>
+    </item>
+    <item>
+      <title>php array操作系列</title>
+      <link>https://putyy.com/blog/legacy-42/</link>
+      <guid>https://putyy.com/blog/legacy-42/</guid>
+      <description>数组一些列的操作记录</description>
+      <pubDate>Sat, 12 Oct 2019 14:02:30 +0800</pubDate>
+    </item>
+    <item>
+      <title>js的一些正则</title>
+      <link>https://putyy.com/blog/legacy-41/</link>
+      <guid>https://putyy.com/blog/legacy-41/</guid>
+      <description>js表情过滤,js格式化文本,js匹配资源名称</description>
+      <pubDate>Mon, 23 Sep 2019 19:37:48 +0800</pubDate>
+    </item>
+    <item>
+      <title>监听浏览器地址栏变化、改变浏览器地址栏url</title>
+      <link>https://putyy.com/blog/legacy-40/</link>
+      <guid>https://putyy.com/blog/legacy-40/</guid>
+      <description>onhashchange事件,js改变浏览器url,监听url改变</description>
+      <pubDate>Mon, 23 Sep 2019 19:25:55 +0800</pubDate>
+    </item>
+    <item>
+      <title>jsCookie,LocalStorage,SessionStorage</title>
+      <link>https://putyy.com/blog/legacy-39/</link>
+      <guid>https://putyy.com/blog/legacy-39/</guid>
+      <description>一些经常使用到的前端缓存方式，记录一下省得每次都去翻代码！</description>
+      <pubDate>Sat, 14 Sep 2019 13:43:44 +0800</pubDate>
+    </item>
+    <item>
+      <title>js截取视频封面</title>
+      <link>https://putyy.com/blog/legacy-38/</link>
+      <guid>https://putyy.com/blog/legacy-38/</guid>
+      <description>用js实现截取视频封面！</description>
+      <pubDate>Thu, 12 Sep 2019 12:27:45 +0800</pubDate>
+    </item>
+    <item>
+      <title>记录一下flex布局</title>
+      <link>https://putyy.com/blog/legacy-37/</link>
+      <guid>https://putyy.com/blog/legacy-37/</guid>
+      <description>一：display:flex 布局 display:flex 是一种布局方式。它即可以应用于容器中，也可以应用于行内元素。是W3C提出的一种新的方案，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 display:flex 是一种布局方式。它即可以应用于容器中，也可以应用于行内元素。是W3C提出的一种新的方案，可以简便、完整、响应式地实现各种页面...</description>
+      <pubDate>Tue, 27 Aug 2019 15:34:43 +0800</pubDate>
+    </item>
+    <item>
+      <title>PhpStorm、WebStorm及其他系列IDE快捷键</title>
+      <link>https://putyy.com/blog/legacy-36/</link>
+      <guid>https://putyy.com/blog/legacy-36/</guid>
+      <description>记录一下平时经常使用到的快捷键</description>
+      <pubDate>Fri, 23 Aug 2019 16:14:09 +0800</pubDate>
+    </item>
+    <item>
+      <title>mkdir、rm</title>
+      <link>https://putyy.com/blog/legacy-34/</link>
+      <guid>https://putyy.com/blog/legacy-34/</guid>
+      <description>记录一下</description>
+      <pubDate>Fri, 02 Aug 2019 17:20:54 +0800</pubDate>
+    </item>
+    <item>
+      <title>正则记录</title>
+      <link>https://putyy.com/blog/legacy-33/</link>
+      <guid>https://putyy.com/blog/legacy-33/</guid>
+      <description>撸码中时常用到的正则记录。。。。</description>
+      <pubDate>Fri, 02 Aug 2019 10:38:49 +0800</pubDate>
+    </item>
+    <item>
+      <title>postman使用记录</title>
+      <link>https://putyy.com/blog/legacy-32/</link>
+      <guid>https://putyy.com/blog/legacy-32/</guid>
+      <description>postman提起这个我相信很多老司机都会经常使用到，虽然咱不做什么自动化测试之类的东西，但是工作或者平时会用到很多，所以有了 这篇文章来记录一下吧</description>
+      <pubDate>Sat, 25 May 2019 16:42:14 +0800</pubDate>
+    </item>
+    <item>
+      <title>微信录音文件的处理</title>
+      <link>https://putyy.com/blog/legacy-19/</link>
+      <guid>https://putyy.com/blog/legacy-19/</guid>
+      <description>微信录音文件的处理，speex高清素材处理，amr处理</description>
+      <pubDate>Sat, 23 Feb 2019 16:48:54 +0800</pubDate>
+    </item>
+    <item>
+      <title>怎么替换所有css里面的资源呢？</title>
+      <link>https://putyy.com/blog/legacy-17/</link>
+      <guid>https://putyy.com/blog/legacy-17/</guid>
+      <description>PHP替换css中静态资源</description>
+      <pubDate>Fri, 25 Jan 2019 16:09:05 +0800</pubDate>
+    </item>
+    <item>
+      <title>怎么替换所有html view里面的资源呢？</title>
+      <link>https://putyy.com/blog/legacy-16/</link>
+      <guid>https://putyy.com/blog/legacy-16/</guid>
+      <description>循环读取某文件下的所有文件!</description>
+      <pubDate>Fri, 02 Nov 2018 14:35:36 +0800</pubDate>
+    </item>
+    <item>
+      <title>安装禅道</title>
+      <link>https://putyy.com/blog/legacy-13/</link>
+      <guid>https://putyy.com/blog/legacy-13/</guid>
+      <description>安装禅道。。。安装将我们下载好的安装包解压到/opt文件夹下特别说明：不要解压到别的目录再拷贝到/opt/，因为这样会导致文件的所有者和读写权限改变，也不要解压后把整个目录777权限。 可以使用命令：</description>
+      <pubDate>Thu, 31 May 2018 17:36:49 +0800</pubDate>
+    </item>
+    <item>
+      <title>scp</title>
+      <link>https://putyy.com/blog/legacy-12/</link>
+      <guid>https://putyy.com/blog/legacy-12/</guid>
+      <description>scp   r   root@ip:/opt/mysql      /opt   将远程服务器文件夹拷贝到服务器制定目录 会要求输入远程服务器密码</description>
+      <pubDate>Wed, 30 May 2018 11:49:12 +0800</pubDate>
+    </item>
+    <item>
+      <title>常用js函数,js函数集合</title>
+      <link>https://putyy.com/blog/legacy-11/</link>
+      <guid>https://putyy.com/blog/legacy-11/</guid>
+      <description>js解析url,js多维数组指定字段排序,js字符串转utf-8,js复制指定内容,js格式化json,html展示json格式,字符串去重</description>
+      <pubDate>Thu, 24 May 2018 13:55:11 +0800</pubDate>
+    </item>
+    <item>
+      <title>微信分享相关的东西怎么动态修改呢？</title>
+      <link>https://putyy.com/blog/legacy-10/</link>
+      <guid>https://putyy.com/blog/legacy-10/</guid>
+      <description>可以动态改变微信分享内容的js封装代码。。。。。</description>
+      <pubDate>Wed, 23 May 2018 11:44:27 +0800</pubDate>
+    </item>
+    <item>
+      <title>怎么在真机上面查看网页错误呢？</title>
+      <link>https://putyy.com/blog/legacy-5/</link>
+      <guid>https://putyy.com/blog/legacy-5/</guid>
+      <description>我们在进行web开发的时候，时不时会遇到一些无法预测的问题，手机端不好调试，怎么检查哪里出错了呢？推荐工具:vconsole+模拟器(我一般用夜神模拟器)</description>
+      <pubDate>Sun, 13 May 2018 13:03:24 +0800</pubDate>
+    </item>
+    <item>
+      <title>FFmpeg的使用记录</title>
+      <link>https://putyy.com/blog/legacy-1/</link>
+      <guid>https://putyy.com/blog/legacy-1/</guid>
+      <description>amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:</description>
+      <pubDate>Sun, 01 Apr 2018 20:38:42 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

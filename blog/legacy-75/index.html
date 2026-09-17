@@ -1,0 +1,73 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>select · putyy</title><meta name="description" content="通过 select 可以监听 channel 上的数据流动。"><meta name="keywords" content="go select"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-75/"><meta property="og:title" content="select"><meta property="og:description" content="通过 select 可以监听 channel 上的数据流动。"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-75/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="select"><meta name="twitter:description" content="通过 select 可以监听 channel 上的数据流动。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-07T08:15:06+08:00","datePublished":"2022-02-22T15:17:24+08:00","description":"通过 select 可以监听 channel 上的数据流动。","headline":"select","inLanguage":"zh-CN","keywords":"go select","mainEntityOfPage":"https://putyy.com/blog/legacy-75/","name":"select","url":"https://putyy.com/blog/legacy-75/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main has-toc"><nav class="doc-toc terminal-toc" data-page-toc aria-label="本页目录"><strong>本页目录</strong><ol><li class="toc-level-4"><a href="#%e7%9b%91%e5%90%ac%e8%a7%a6%e5%8f%91%e6%89%a7%e8%a1%8c">监听触发执行</a></li><li class="toc-level-4"><a href="#%e7%9b%91%e5%90%ac%e9%9a%8f%e6%9c%ba%e6%89%a7%e8%a1%8c">监听随机执行</a></li></ol></nav><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2022-02-22T15:17:24+08:00">创建于 2022年2月22日</time></div><h1>select</h1><p class="article-summary">通过 select 可以监听 channel 上的数据流动。</p><div class="article-tags" aria-label="文章标签"><a href="/tags/go/"># Go</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><p><a href="https://learnku.com/docs/build-web-application-with-golang/027-concurrency/3165">摘抄至原文</a></p><blockquote><p>select 默认是阻塞的，只有当监听的 channel 中有发送或接收可以进行时才会运行，当多个 channel 都准备好的时候，select 是随机的选择一个执行的。</p></blockquote><h4 id="监听触发执行">监听触发执行</h4><pre><code class="language-go">package main
+
+import (
+	&#34;fmt&#34;
+	&#34;time&#34;
+)
+
+func main() {
+	a := make(chan int)
+	b := make(chan int)
+	fun := func() {
+		select {
+		case &lt;-a:
+			fmt.Println(&#34;aa&#34;)
+		case &lt;-b:
+			fmt.Println(&#34;bb&#34;)
+		}
+	}
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		a&lt;-1
+	}()
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		b&lt;-1
+	}()
+
+	fun()
+
+	fun()
+
+}
+</code></pre><blockquote><p>以上程序始终输出</p></blockquote><p><img src="https://www.putyy.com/uploads/article/20220222/bZWwL2NQuxtrMCs64BduqD1T0UxEull2JCZEEcIQ.png" alt="image.png"></p><h4 id="监听随机执行">监听随机执行</h4><pre><code class="language-go">package main
+
+import (
+	&#34;fmt&#34;
+	&#34;time&#34;
+)
+
+func main() {
+	a := make(chan int)
+	b := make(chan int)
+	fun := func() {
+		select {
+		case &lt;-a:
+			fmt.Println(&#34;aa&#34;)
+		case &lt;-b:
+			fmt.Println(&#34;bb&#34;)
+		}
+	}
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		a&lt;-1
+	}()
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		b&lt;-1
+	}()
+
+	fun()
+
+	fun()
+
+}
+</code></pre><blockquote><p>以上程序始终输出</p></blockquote><p><img src="https://www.putyy.com/uploads/article/20220222/bUc6abdfHjKzJuNiYCGycRoa1e9D0oYj7rZE9U95.png" alt="image.png"></p></div></article><nav class="article-nav" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-76/">← laravel-admin Grid类display方法传入闭包调用不到本类的方法？</a></div><div><span>下一篇</span><a href="/blog/legacy-73/">Nginx常用配置 →</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>

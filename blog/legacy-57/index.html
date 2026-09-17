@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker-Swarm实践记录 · putyy</title><meta name="description" content="docker-swarm实践记录,docker-swarm问题整理"><meta name="keywords" content="docker,docker-swarm,docker-swarm端口,swarm集群搭建,swarm网络不可用"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-57/"><meta property="og:title" content="Docker-Swarm实践记录"><meta property="og:description" content="docker-swarm实践记录,docker-swarm问题整理"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-57/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Docker-Swarm实践记录"><meta name="twitter:description" content="docker-swarm实践记录,docker-swarm问题整理"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-07T08:21:47+08:00","datePublished":"2021-07-21T10:53:00+08:00","description":"docker-swarm实践记录,docker-swarm问题整理","headline":"Docker-Swarm实践记录","inLanguage":"zh-CN","keywords":"docker, docker-swarm, docker-swarm端口, swarm集群搭建, swarm网络不可用","mainEntityOfPage":"https://putyy.com/blog/legacy-57/","name":"Docker-Swarm实践记录","url":"https://putyy.com/blog/legacy-57/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main has-toc"><nav class="doc-toc terminal-toc" data-page-toc aria-label="本页目录"><strong>本页目录</strong><ol><li class="toc-level-3"><a href="#%e4%b8%80-%e9%98%b2%e7%81%ab%e5%a2%99%e9%80%89%e6%8b%a9-centos-7-0%e9%bb%98%e8%ae%a4%e4%bd%bf%e7%94%a8%e7%9a%84%e6%98%affirewall%e4%bd%9c%e4%b8%ba%e9%98%b2%e7%81%ab%e5%a2%99-%e8%bf%99%e9%87%8c%e6%94%b9%e4%b8%baiptables%e9%98%b2%e7%81%ab%e5%a2%99%e6%ad%a5%e9%aa%a4-%e5%8e%9f%e5%9b%a0%e8%a7%81%e6%96%87%e6%9c%ab">一. 防火墙选择, CentOS 7.0默认使用的是firewall作为防火墙，这里改为iptables防火墙步骤(原因见文末)。</a></li><li class="toc-level-5"><a href="#1-%e5%85%b3%e9%97%adfirewall">1、关闭firewall：</a></li><li class="toc-level-5"><a href="#2-iptables">2. iptables</a></li><li class="toc-level-3"><a href="#%e4%ba%8c-swarm%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">二. Swarm集群搭建</a></li><li class="toc-level-5"><a href="#1-%e4%bf%ae%e6%94%b9%e9%9b%86%e7%be%a4%e7%94%a8%e5%88%b0%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8docker%e9%85%8d%e7%bd%ae">1. 修改集群用到的服务器docker配置:</a></li><li class="toc-level-5"><a href="#2-%e5%88%9b%e5%bb%ba%e9%9b%86%e7%be%a4">2. 创建集群</a></li><li class="toc-level-5"><a href="#3-%e6%9c%8d%e5%8a%a1%e5%88%9b%e5%bb%ba-%e5%8d%87%e7%ba%a7">3. 服务创建、升级</a></li><li class="toc-level-5"><a href="#4-%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">4. 常用命令</a></li><li class="toc-level-3"><a href="#%e9%97%ae%e9%a2%98%e6%95%b4%e7%90%86">问题整理:</a></li><li class="toc-level-5"><a href="#1-%e7%a7%81%e6%9c%89%e5%ba%93%e5%88%9b%e5%bb%ba%e6%9c%8d%e5%8a%a1%e5%bf%85%e9%a1%bb%e5%8a%a0%e4%b8%8a-with-registry-auth">1. 私有库创建服务必须加上: --with-registry-auth</a></li><li class="toc-level-5"><a href="#2-%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e9%97%ae%e9%a2%98">2.负载均衡问题</a></li><li class="toc-level-5"><a href="#3-%e9%87%8d%e5%86%99%e9%98%b2%e7%81%ab%e5%a2%99%e8%a7%84%e5%88%99%e5%90%8e%e5%af%bc%e8%87%b4%e5%bd%93%e5%89%8d%e8%8a%82%e7%82%b9%e7%9a%84%e7%bd%91%e7%bb%9c%e4%b8%8d%e5%8f%af%e7%94%a8">3. 重写防火墙规则后导致当前节点的网络不可用</a></li><li class="toc-level-5"><a href="#4-%e6%b8%85%e7%90%86%e6%97%a0%e7%94%a8%e7%9a%84%e9%95%9c%e5%83%8f-%e5%ae%b9%e5%99%a8">4. 清理无用的镜像 容器</a></li></ol></nav><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2021-07-21T10:53:00+08:00">创建于 2021年7月21日</time></div><h1>Docker-Swarm实践记录</h1><p class="article-summary">docker-swarm实践记录,docker-swarm问题整理</p><div class="article-tags" aria-label="文章标签"><a href="/tags/docker/"># docker</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><h3 id="一-防火墙选择-centos-7-0默认使用的是firewall作为防火墙-这里改为iptables防火墙步骤-原因见文末">一. 防火墙选择, CentOS 7.0默认使用的是firewall作为防火墙，这里改为iptables防火墙步骤(原因见文末)。</h3><h5 id="1-关闭firewall">1、关闭firewall：</h5><pre><code class="language-shell">// 停止firewall
+systemctl stop firewalld.service
+// 禁止firewall开机启动
+systemctl disable firewalld.service
+// 查看默认防火墙状态（关闭后显示notrunning，开启后显示running）
+firewall-cmd --state
+</code></pre><h5 id="2-iptables">2. iptables</h5><blockquote><p>安装</p></blockquote><pre><code class="language-shell">yum install -y iptables
+// 服务管理
+// 查看iptables状态
+service iptables status
+// iptables服务重启
+service iptables restart
+// iptables服务禁用
+service iptables stop
+// 查看规则
+iptables -L -n --line-number
+// 删除规则 INPUT大写，2表示序号
+iptables -D INPUT 2
+</code></pre><blockquote><p>开放端口</p></blockquote><pre><code class="language-shell">// TCP端口2376 用于安全的Docker客户端通信
+iptables -I INPUT -p tcp --dport 2376 -j ACCEPT
+
+// TCP端口2377 集群管理端口，只需要在管理器节点上打开
+iptables -I INPUT -p tcp --dport 2377 -j ACCEPT
+
+// TCP与UDP端口7946 节点之间通讯端口（容器网络发现）
+iptables -I INPUT -p tcp --dport 7946 -j ACCEPT
+iptables -I INPUT -p udp --dport 7946 -j ACCEPT
+
+// UDP端口4789 overlay网络通讯端口（容器入口网络）
+iptables -I INPUT -p udp --dport 4789 -j ACCEPT
+
+// portainer 的endpoint端口
+iptables -I INPUT -p tcp --dport 9001 -j ACCEPT
+</code></pre><h3 id="二-swarm集群搭建">二. Swarm集群搭建</h3><h5 id="1-修改集群用到的服务器docker配置">1. 修改集群用到的服务器docker配置:</h5><pre><code class="language-shell">// 修改文件 /lib/systemd/system/docker.service，允许使用 TCP 连接 Docker
+ExecStart=/usr/bin/dockerd -H unix:// -H tcp://0.0.0.0:2375
+</code></pre><h5 id="2-创建集群">2. 创建集群</h5><pre><code class="language-shell">// 初始化集群
+docker swarm init
+
+// 显示manager节点的TOKEN
+docker swarm join-token manager
+
+// 加入到集群
+docker swarm join --token &lt;token&gt; &lt;manager ip&gt;:2377
+</code></pre><h5 id="3-服务创建-升级">3. 服务创建、升级</h5><pre><code class="language-shell">// 创建自定义 Overlay 网络
+docker network create --driver overlay swarm-network
+
+// 创建服务
+// --name 服务名称
+docker service create
+--with-registry-auth
+--name api-service
+--network swarm-network
+-p 8000:8000
+--replicas 2
+api:test
+
+ // 滚动升级服务
+ // 参数含义解释：
+ // –-image 指定要更新的镜像
+ // -–update-parallelism 指定最大同步更新的任务数
+ // -–update-delay 指定更新间隔
+docker service update
+--with-registry-auth
+--image api:test
+--update-delay 2s
+--update-parallelism 5 api-service
+</code></pre><h5 id="4-常用命令">4. 常用命令</h5><pre><code class="language-shell">// 查看当前集群的信息。
+docker info
+
+// 查看集群节点
+docker node ls
+
+// 查看服务
+docker service ls
+
+// 删除服务
+docker service rm &lt;服务名称&gt;
+
+// 查看服务日志
+docker service logs &lt;服务名称&gt;
+
+// 扩展集群服务
+docker service scale helloworld=2
+
+// 查看服务运行在哪个节点上
+docker service ps &lt;服务名称&gt;
+
+// 查看服务部署的具体信息：
+docker service inspect --pretty &lt;服务名称&gt;
+</code></pre><h3 id="问题整理">问题整理:</h3><h5 id="1-私有库创建服务必须加上-with-registry-auth">1. 私有库创建服务必须加上: --with-registry-auth</h5><pre><code class="language-shell">docker service create
+--with-registry-auth
+--name shequn-api
+-p 8000:8000
+--replicas 2
+--network swarm-network
+cloud-lm720/api:test
+</code></pre><h5 id="2-负载均衡问题">2.负载均衡问题</h5><p>node必须开放 4789 端口 参考: <a href="https://blog.csdn.net/weixin_33722405/article/details/94662896">https://blog.csdn.net/weixin_33722405/article/details/94662896</a></p><h5 id="3-重写防火墙规则后导致当前节点的网络不可用">3. 重写防火墙规则后导致当前节点的网络不可用</h5><p>最佳方案: 防火墙换成 iptables 并且修改配置项：</p><pre><code class="language-shell">IPTABLES_SAVE_ON_STOP=&#34;yes&#34;
+IPTABLES_SAVE_ON_RESTART=&#34;yes&#34;
+</code></pre><p>参考: <a href="https://blog.csdn.net/qq_14869093/article/details/102566291">https://blog.csdn.net/qq_14869093/article/details/102566291</a></p><h5 id="4-清理无用的镜像-容器">4. 清理无用的镜像 容器</h5><p>参考: <a href="https://ghthou.github.io/2020/11/15/Docker-Swarm-%E5%AE%9A%E6%97%B6%E6%B8%85%E7%90%86%E5%AE%B9%E5%99%A8%E4%B8%8E%E9%95%9C%E5%83%8F/">https://ghthou.github.io/2020/11/15/Docker-Swarm-%E5%AE%9A%E6%97%B6%E6%B8%85%E7%90%86%E5%AE%B9%E5%99%A8%E4%B8%8E%E9%95%9C%E5%83%8F/</a></p><p><a href="https://www.rootop.org/pages/4503.html">https://www.rootop.org/pages/4503.html</a></p></div></article><nav class="article-nav" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-58/">← php-fpm容器化部署</a></div><div><span>下一篇</span><a href="/blog/legacy-56/">PHP-FPM的一些配置记录 →</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>

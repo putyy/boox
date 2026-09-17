@@ -1,0 +1,9 @@
+.bookx-diagram { margin:1.5em 0; padding:16px; border:1px solid currentColor; border-radius:12px; min-width:0; }
+.bookx-diagram-display { overflow-x:auto; text-align:center; }
+.bookx-diagram-display svg { display:block; max-width:100%; height:auto; margin:auto; }
+.bookx-diagram details { margin-top:12px; text-align:left; }
+.bookx-diagram summary { cursor:pointer; font-size:13px; }
+.bookx-diagram details pre { white-space:pre-wrap; overflow-wrap:anywhere; }
+.bookx-diagram-error { text-align:left; white-space:pre-wrap; overflow-wrap:anywhere; }
+.bookx-diagram-scratch { position:absolute; top:0; left:-100000px; width:1200px; visibility:hidden; pointer-events:none; }
+@media (max-width:600px) { .bookx-diagram { padding:10px; } }

@@ -1,0 +1,119 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>怎么替换所有css里面的资源呢？ · putyy</title><meta name="description" content="PHP替换css中静态资源"><meta name="keywords" content="css静态资源替换"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-17/"><meta property="og:title" content="怎么替换所有css里面的资源呢？"><meta property="og:description" content="PHP替换css中静态资源"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-17/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="怎么替换所有css里面的资源呢？"><meta name="twitter:description" content="PHP替换css中静态资源"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-07T08:21:54+08:00","datePublished":"2019-01-25T16:09:05+08:00","description":"PHP替换css中静态资源","headline":"怎么替换所有css里面的资源呢？","inLanguage":"zh-CN","keywords":"css静态资源替换","mainEntityOfPage":"https://putyy.com/blog/legacy-17/","name":"怎么替换所有css里面的资源呢？","url":"https://putyy.com/blog/legacy-17/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main"><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2019-01-25T16:09:05+08:00">创建于 2019年1月25日</time></div><h1>怎么替换所有css里面的资源呢？</h1><p class="article-summary">PHP替换css中静态资源</p><div class="article-tags" aria-label="文章标签"><a href="/tags/php/"># php</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><pre><code class="language-php">&lt;?php
+// +----------------------------------------------------------------------
+// | Created by PhpStorm.
+// +----------------------------------------------------------------------
+// | user : LW放下
+// +----------------------------------------------------------------------
+// | blog : www.putyy.com
+// +----------------------------------------------------------------------
+// | email: 10945014@qq.com
+// +----------------------------------------------------------------------
+// | Date : 2018/11/2 0002 11:30
+// +----------------------------------------------------------------------
+
+	global $templateCount;
+
+	//总数
+	$templateCount = 0;
+
+	//绝对路径
+	global $absSource;
+	$absSource = &#39;http://xxx.xxx.com&#39;;
+
+	/**
+	 * 这里只是把相对路径的css,js,jpg,png,gif,jpeg的url传递给getStyleDomain这个统一获取真实资源地址的类方法
+	 * 执行视图文件替换
+	 * @param $viewPath
+	 */
+	function replaceSource($cssPath){
+		global $absSource;
+		$content = file_get_contents($cssPath);
+		$newPath = &#39;/skin/&#39;.str_replace(array(&#39;../&#39;,&#39;./&#39;),array(&#39;&#39;,&#39;&#39;),$cssPath);
+		$match = &#39;/url([&#34;|&#39;]{0,1}([^&#39;//|//|data:|&#34;data:|&#34;http|http|&#34;https|https].*?)[&#39;|&#34;]{0,1})/is&#39;;
+		$data = array();
+		preg_match_all($match,$content,$data);
+		if (!empty($data[0])) {
+			$old = array();
+			$new = array();
+			foreach ($data[0] as $k=&gt;$v) {
+				array_push($old, $v);
+				$sourceUrl = $newPath;
+				$pathArray = explode(&#39;/&#39;, $sourceUrl);
+				unset($pathArray[count($pathArray) - 1]);
+				if (strpos($v,&#39;../&#39;) !== false) {
+					$cou = substr_count($v, &#39;../&#39;);
+					while ($cou){
+						unset($pathArray[count($pathArray) - 1]);
+						$cou--;
+					}
+				}
+				$sourceUrl = implode(&#39;/&#39;,$pathArray);
+				preg_match(&#39;/(([&#39;|&#34;]*).*?([&#39;|&#34;]*))/&#39;,$v,$das);
+				$aa = $data[1][$k];
+				array_push($new, &#39;url&#39;.$das[1].$absSource.$sourceUrl . &#39;/&#39; . str_replace(array(&#39;../&#39;,&#39;./&#39;),array(&#39;&#39;,&#39;&#39;),$aa).$das[2]);
+			}
+
+			$content = str_replace(array_unique($old),array_unique($new),$content);
+			file_put_contents($cssPath,$content);
+			global $templateCount;
+			$templateCount++;
+		}
+		return;
+	}
+
+	/**
+	 * 读取文件路径
+	 * @param $listChildren
+	 * @param $fPath
+	 */
+	function readChildren($listChildren, $fPath)
+	{
+		foreach ($listChildren as $vv) {
+
+			if (in_array($vv, array(&#39;.&#39;, &#39;..&#39;))) {
+				continue;
+			}
+
+			if (is_dir($fPath . &#39;/&#39; . $vv)) {
+				readChildren(scandir($fPath . &#39;/&#39; . $vv), $fPath . &#39;/&#39; . $vv);
+			} elseif (is_file($fPath . &#39;/&#39; . $vv)) {
+				if(strpos($vv,&#39;.css&#39;)!==false){
+					replaceSource($fPath . &#39;/&#39; . $vv);
+				}
+			}
+		}
+		return;
+	}
+
+	/**
+	 * 初始化
+	 * 替换所有视图文件静态资源
+	 * 如果新增视图或者修改视图 直接配置下列数组为当前文件同级目录即可
+	 * 该方法不保证完全成功，所以完成后最好检测一下
+	 * 目前支持格式: jpg,png,gif,jpeg
+	 * 资源原有格式:  1、 ~~xx/xx.png
+	 *
+	 *               2、 &#34;./xxx/xxx/xxx.jpg&#34;
+	 *
+	 *               3、  &#39;./xxx/xxx/xxx.jpg&#39;
+	 *               ...............
+	 *
+	 * 使用方式进入该脚本目录,命令行执行 php replaceCss.php
+	 */
+	//$ignoreDir = array(&#39;./xxx/xxx/xxx/css&#39;);
+	//foreach ($ignoreDir as $v){
+	//    if ( is_dir($v) ) {
+	//        //循环读取下层文件
+	//        readChildren(scandir( $v ),  $v);
+	//    }
+	//}
+
+	// 替换指定文件
+	$cssPath = &#39;./xxx/css/test.css&#39;;
+	replaceSource($cssPath);
+	var_dump(&#39;模板替换数量:&#39;.$templateCount);
+</code></pre></div></article><nav class="article-nav" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-19/">← 微信录音文件的处理</a></div><div><span>下一篇</span><a href="/blog/legacy-16/">怎么替换所有html view里面的资源呢？ →</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>

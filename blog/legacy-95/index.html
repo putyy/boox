@@ -1,0 +1,122 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>uniapp swiper长列表优化，纵享丝滑 · putyy</title><meta name="description" content="处理长列表卡顿"><meta name="keywords" content="vue长列表卡顿,小程序长列表卡顿,uniapp长列表卡顿,长列表卡顿,swiper卡顿,swiper长列表"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-95/"><meta property="og:title" content="uniapp swiper长列表优化，纵享丝滑"><meta property="og:description" content="处理长列表卡顿"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-95/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="uniapp swiper长列表优化，纵享丝滑"><meta name="twitter:description" content="处理长列表卡顿"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-07T08:21:57+08:00","datePublished":"2024-04-11T21:10:55+08:00","description":"处理长列表卡顿","headline":"uniapp swiper长列表优化，纵享丝滑","inLanguage":"zh-CN","keywords":"vue长列表卡顿, 小程序长列表卡顿, uniapp长列表卡顿, 长列表卡顿, swiper卡顿, swiper长列表","mainEntityOfPage":"https://putyy.com/blog/legacy-95/","name":"uniapp swiper长列表优化，纵享丝滑","url":"https://putyy.com/blog/legacy-95/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main"><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2024-04-11T21:10:55+08:00">创建于 2024年4月11日</time></div><h1>uniapp swiper长列表优化，纵享丝滑</h1><p class="article-summary">处理长列表卡顿</p><div class="article-tags" aria-label="文章标签"><a href="/tags/uniapp/"># uniapp</a><a href="/tags/vue/"># vue</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><p><strong>类似抖音作品列表，按照普通的列表渲染一直累加数据，作品数量加载到一定量会出现卡顿，通过固定数量的swiper item来处理 如下:</strong></p><pre><code>&lt;template lang=&#34;pug&#34;&gt;
+div.container
+  swiper.work_list(
+    v-if=&#34;isInit&#34;
+    :vertical=&#34;true&#34;
+    :circular=&#34;circular&#34;
+    :skip-hidden-item-layout=&#34;true&#34;
+    easing-function=&#34;default&#34;
+    @change=&#34;swiperChange&#34;
+  )
+    swiper-item(v-for=&#34;(item, index) in showList&#34; wx:key=&#34;id&#34;)
+      div.content {{item.name}}
+&lt;/template&gt;
+</code></pre><pre><code>&lt;script lang=&#34;ts&#34; setup&gt;
+
+import {ref} from &#34;vue&#34;
+import {onLoad} from &#34;@dcloudio/uni-app&#34;;
+
+interface work {
+  id: number,
+  name: string,
+  extra_id: number
+}
+
+const workList = ref&lt;work[]&gt;([])
+const showList = ref&lt;work[]&gt;([])
+// 当前展示的作品索引
+const workIndex = ref(0)
+// 当前展示的swiper-item索引
+const showIndex = ref(0)
+
+const id = ref(0)
+// 当展示workList的第一个或最后一个变为false
+const circular = ref(false)
+
+onLoad((options: ptAny) =&gt; {
+  init()
+})
+
+const init = ():void =&gt; {
+  id.value = id.value + 1
+  let work = {
+    name: &#34;id name &#34; + id.value,
+    id: id.value,
+    extra_id:  id.value + 1,
+  }
+  workList.value.push(work);
+  showList.value.push(work);
+  if (work.extra_id &gt; 0 &amp;&amp; showList.value.length &lt; 3){
+    // 模拟初始化保证最少有三个作品
+    return init()
+  }
+}
+
+const swiperChange = (e: ptAny): void =&gt; {
+  if (showList.value.length &lt; 3){
+    return;
+  }
+  // 当前展示的swiper-item索引 0 1 2
+  const current = e.detail.current
+  // 向后滑(从下向上滑动)：2、-1， 向前滑：-2、1
+  const direction = showIndex.value - current
+  showIndex.value = current
+
+  if (direction == 2 || direction == -1) {
+    let temp = workIndex.value + 1
+    workIndex.value = temp == workList.value.length ? 0 : temp;
+  } else  {
+    workIndex.value = workIndex.value - 1 == -1 ? workList.value.length - 1 : workIndex.value - 1;
+  }
+
+  let temp = workList.value.length - 1
+  if ((direction == 2 || direction == -1) &amp;&amp; temp - workIndex.value &lt; 1 &amp;&amp; workList.value[temp].extra_id &gt; 0) {
+    // 模拟加载更多
+    id.value = id.value + 1
+    workList.value.push({
+      name: &#34;id name &#34; + id.value,
+      id: id.value,
+      extra_id: id.value &lt; 8 ? id.value + 1 : 0,
+    });
+  }
+
+  let changeIndex, changeWorkIndex
+  if (direction == 2 || direction == -1) {
+    changeIndex = showIndex.value + 1 == 3 ? 0 : showIndex.value + 1
+    changeWorkIndex = workIndex.value + 1 == workList.value.length ? 0 : workIndex.value + 1
+  }else{
+    changeIndex = showIndex.value - 1 == -1 ? 2 : showIndex.value - 1
+    changeWorkIndex = workIndex.value - 1 == -1 ? workList.value.length - 1 : workIndex.value - 1
+  }
+  if (showIndex.value === 0 &amp;&amp; workIndex.value === 0 &amp;&amp; workList.value[temp].extra_id &gt; 0){
+    // 第一个作品 且还有更多作品
+    setTimeout(()=&gt;{
+      circular.value = false
+    }, 500)
+  }else {
+    setTimeout(()=&gt;{
+      circular.value = true
+    }, 500)
+  }
+  showList.value[changeIndex] = workList.value[changeWorkIndex]
+}
+
+&lt;/script&gt;
+</code></pre><pre><code>&lt;style lang=&#34;scss&#34; scoped&gt;
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-color: #fafafa;
+  padding: 20rpx;
+  box-sizing: border-box;
+  .work_list, .content{
+    width: 100%;
+    height: 100%;
+  }
+}
+&lt;/style&gt;
+</code></pre></div></article><nav class="article-nav" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-98/">← Expo本地构建android apk</a></div><div><span>下一篇</span><a href="/blog/legacy-94/">2024，我写了一个博客 →</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>

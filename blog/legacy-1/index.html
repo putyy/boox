@@ -1,0 +1,67 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FFmpeg的使用记录 · putyy</title><meta name="description" content="amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:"><meta name="keywords" content="amr,ffmepeg,php"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-1/"><meta property="og:title" content="FFmpeg的使用记录"><meta property="og:description" content="amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-1/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FFmpeg的使用记录"><meta name="twitter:description" content="amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-07T09:10:15+08:00","datePublished":"2018-04-01T20:38:42+08:00","description":"amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:","headline":"FFmpeg的使用记录","inLanguage":"zh-CN","keywords":"amr, ffmepeg, php","mainEntityOfPage":"https://putyy.com/blog/legacy-1/","name":"FFmpeg的使用记录","url":"https://putyy.com/blog/legacy-1/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main"><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2018-04-01T20:38:42+08:00">创建于 2018年4月1日</time></div><h1>FFmpeg的使用记录</h1><p class="article-summary">amr格式音频无法在HTML无法播放, 之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:</p><div class="article-tags" aria-label="文章标签"><a href="/tags/linux/"># linux</a><a href="/tags/tool/"># tool</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><p>之前开发一个微信公众好实时聊天的时候，由于项目需要，要求支持文字，文字+表情，图片，语音实时聊天，除了语音其他的还好说，可能第一次搞网页版语音聊天所以觉得麻烦吧，其实做完之后才发现并没有那么难，下面我讲解一下我遇到的问题:</p><p>主要的问题就是：</p><p>调用微信录音的问题，录完的音频文件存放在本地，也可以存到微信那边，但是微信那边只能存储几天，所以为了聊天的体验度，语音文件肯定不能放在微信那边。</p><p>于是我调用微信的录音接口，然后上传到自己的平台服务器，本想就大功告成，但是在html页面播放的时候才发现不能播放，原因是文件格式不支持,微信那边是.amr的格式, 而html不支持，所以另寻它路。</p><p>开始我寻思看看微信那边能不能直接录音成MP3格式的，但最后还是失败告别。</p><p>最后只能想着把amr格式的转成mp3的，开始我用的七牛云，但是七牛云的不怎么方便，所以决定试一下其他的办法，后来找到一个名为"ffmpeg"开源计算机程序，所以我决定用它来处理这个音频文件。开始我以为只要Linux的，但后面发下Window的也有。下面介绍下安装方法及使用吧。</p><p>基础命令:</p><p>1.将xxx.amr转成xxx.mp3</p><pre><code class="language-php">ffmpeg -i xxx.amr xxx.mp3
+</code></pre><p>·</p><p>2.多个音频拼接为一个:</p><pre><code class="language-php">ffmpeg -i &#34;concat:xxx1.mp3|xxx2.mp3|xxx3.mp3&#34; -acodec copy xxx4.mp3
+解释：
+	-i代表输入参数
+	contact:xxx1.mp3|xxx2.mp3|xxx3.mp3 代表着需要连接到一起的音频文件
+	-acodec copy xxx4.mp3 重新编码并复制到新文件xxx4.mp3中
+</code></pre><p>·</p><p>3.多个合成为一个，比如给某用户录音添加背景音乐</p><pre><code class="language-php">ffmpeg -i xxx.mp3 -i xxxbg1.mp3 -i xxxbg2.mp3 -filter_complex amix=inputs=3:duration=first:dropout_transition=2 xxxsave.mp3
+解释：
+	-i代表输入参数
+	-filter_complex ffmpeg滤镜功能
+	amix是混合多个音频到单个音频输出
+	inputs=3代表是3个音频文件，如果更多则代表对应数字
+	duration 确定最终输出文件的长度
+	longest(最长)|shortest（最短）|first（第一个文件）
+	dropout_transition
+	The transition time, in seconds, for volume renormalization when an input stream ends. The default value is 2 seconds.
+	-f mp3  输出文件格式
+	xxxsave.mp3 保存文件
+</code></pre><p>·</p><p>在代码中使用（这里演示的为php的用法）:</p><pre><code class="language-php">$amr = $dirname.$filename;   源文件路径
+$mp3 = $dirname.$name.&#39;_wgc.mp3&#39;; 保存路径
+$command = &#34;/usr/local/bin/ffmpeg -i $amr $mp3&#34;;
+system($command,$error);
+</code></pre><p>返回结果：</p><p>成功返回0，
+失败（命令不存在等原因） 返回 非0值</p><p>安装方法:</p><pre><code>window：
+        先去官网下载window版的ffmpeg, 把bin目录放到环境变量中,然后cmd，具体使用命令请自行百度
+linux(centos),一般情况可以跳过:
+         安装依赖包
+		 	yum install -y automake autoconf libtool gcc gcc-c++
+        创建编译源码的目录
+			mkdir ~/ffmpeg_sources
+</code></pre><p>编译&安装</p><p>Note: 如果您不需要特定的编码器，可以跳过相关部分，然后删除编译ffmpeg 时相应的./configure选项。例如，如果不需要libvorbis ，可以跳过这一节，然后从安装ffmpeg的部分去掉--enable-libvorbis</p><p>yasm：汇编器，新版本的ffmpeg增加了汇编代码</p><pre><code>wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
+tar -xzvf yasm-1.3.0.tar.gz
+cd yasm-1.3.0 &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>lame：Mp3音频解码</p><pre><code>wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar -xzvf lame-3.99.5.tar.gz
+cd lame-3.99.5 &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>amr支持</p><pre><code>wget http://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.3.tar.gz
+tar -xzvf opencore-amr-0.1.3.tar.gz
+cd opencore-amr-0.1.3 &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>amrnb支持</p><pre><code>wget http://www.penguin.cz/~utx/ftp/amr/amrnb-11.0.0.0.tar.bz2
+tar -xjvf amrnb-11.0.0.0.tar.bz2
+cd amrnb-11.0.0.0 &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>amrwb支持</p><pre><code>wget http://www.penguin.cz/~utx/ftp/amr/amrwb-11.0.0.0.tar.bz2
+tar -xjvf amrwb-11.0.0.0.tar.bz2
+cd amrwb-11.0.0.0 &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>x264</p><pre><code>git clone https://code.videolan.org/videolan/x264.git
+// 假设装在 xxx 目录下
+ ./configure --disable-asm --enable-shared --enable-static --prefix=xxx
+make &amp;&amp; make install
+// 然后在 xxx/share 下建一个 x264 目录，把 x264 源码目录下的 x264.pc 拷到 xxx/share/x264 下
+export PKG_CONFIG_PATH=xxx/share/x264
+</code></pre><h4 id="如上操作需要注意安装目录哦-如果需要安装其他特定的编码器可以自行百度然后编译ffmpeg时加入相应的-configure选项">如上操作需要注意安装目录哦，如果需要安装其他特定的编码器可以自行百度然后编译ffmpeg时加入相应的./configure选项##</h4><p>###如果需要安装其他特定的编码器可以自行百度然后编译ffmpeg时加入相应的./configure选项</p><p>ffmpeg: 最好去官网下载最新的安装包 <a href="http://www.ffmpeg.org/download.html">FFmpeg</a> <strong>使用最新版注意命令操作名称</strong></p><pre><code>wget https://ffmpeg.org/releases/ffmpeg-4.1.tar.bz2
+tar -xjvf ffmpeg-4.1.tar.bz2
+cd ffmpeg-4.1
+./configure --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-version3 -enable-shared --enable-libx264  --enable-gpl
+make &amp;&amp; make install
+</code></pre><p>加载配置，最后写入config后，终端运行ffmpeg命令，出现success和已安装的扩展，则运行成功。</p><pre><code>ldconfig
+</code></pre><p>附录：</p><pre><code>ffmpeg默认安装目录为“/usr/local/lib”，有些64位系统下软件目录则为“/usr/lib64”，编译过程中可能会出现
+“ffmpeg: error while loading shared libraries: libmp3lame.so.0: cannot open shared 	object file: No such file or directory”等类似的错误，
+
+解决办法是建立软链接：
+		ln -s /usr/local/lib/libmp3lame.so.0.0.0 /usr/lib64/libmp3lame.so.0
+</code></pre><p>其他问题自行百度吧</p></div></article><nav class="article-nav only-newer" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-5/">← 怎么在真机上面查看网页错误呢？</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>

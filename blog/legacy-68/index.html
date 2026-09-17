@@ -1,0 +1,46 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ps命令 · putyy</title><meta name="description" content="ps命令随记"><meta name="keywords" content="linux ps"><meta name="generator" content="BookX"><meta name="bookx-mermaid-runtime" content="/assets/theme/vendor/mermaid.min.js"><link rel="icon" href="/assets/site/icon.ico"><link rel="canonical" href="https://putyy.com/blog/legacy-68/"><meta property="og:title" content="ps命令"><meta property="og:description" content="ps命令随记"><meta property="og:type" content="article"><meta property="og:url" content="https://putyy.com/blog/legacy-68/"><meta property="og:site_name" content="putyy"><meta property="og:locale" content="zh-CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ps命令"><meta name="twitter:description" content="ps命令随记"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"putyy"},"dateModified":"2026-09-06T22:16:27+08:00","datePublished":"2022-01-10T15:51:52+08:00","description":"ps命令随记","headline":"ps命令","inLanguage":"zh-CN","keywords":"linux ps","mainEntityOfPage":"https://putyy.com/blog/legacy-68/","name":"ps命令","url":"https://putyy.com/blog/legacy-68/"}</script><link rel="alternate" type="application/rss+xml" title="putyy" href="/rss.xml"><link rel="stylesheet" href="/assets/theme/site.e14a546d1f5306e417b89918.css"><script defer src="/assets/theme/site.415eff4cf71e44f53b45d1f7.js"></script></head><body class="page-post"><header class="site-header"><div class="site-frame header-inner"><a class="brand" href="/" aria-label="putyy首页"><span>putyy</span>
+</a><button class="header-search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog"><span aria-hidden="true">⌕</span><span>搜索</span><kbd>⌘ K</kbd></button><nav class="primary-nav" aria-label="主导航"><a href="/blog/">文章</a><div class="docs-menu custom-nav-menu" data-docs-menu data-menu-label="文档"><button type="button" class="docs-menu-link nav-group-label" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a">文档</button>
+<button class="docs-menu-toggle" type="button" aria-label="展开文档" aria-expanded="false" aria-controls="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a" hidden></button><div class="docs-menu-panel" id="nav-panel-nav-d6985039-259a-4dd5-93a0-2a740dc97f5a"><a href="/docs/">全部</a><a href="/docs/handbook/">bookx使用手册</a><a href="/docs/theme-guide/">bookx主题设计指南</a></div></div><a href="/projects/">作品</a>
+<a href="/archives/">归档</a>
+<a href="/friends/">好友</a></nav></div></header><dialog id="site-search-dialog" class="search-dialog" data-search-index="/data/search-index.json" aria-labelledby="site-search-title"><div class="search-dialog-shell"><div class="search-dialog-head"><div><span class="section-kicker">QUICK FIND</span><h2 id="site-search-title">搜索站点内容</h2></div><button type="button" class="search-dialog-close" data-search-close aria-label="关闭搜索">×</button></div><label class="search-dialog-input"><span class="sr-only">输入搜索关键词</span><span aria-hidden="true">⌕</span><input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题、分类、标签或正文"><kbd>Esc</kbd></label><div id="site-search-results" class="search-dialog-results" aria-live="polite"><p class="search-hint">输入关键词开始搜索，无需连接服务器。</p></div><p class="search-dialog-foot">按 <kbd>⌘ K</kbd> 随时打开，按 <kbd>Esc</kbd> 关闭</p></div></dialog><main class="site-frame article-main terminal-article-main has-toc"><nav class="doc-toc terminal-toc" data-page-toc aria-label="本页目录"><strong>本页目录</strong><ol><li class="toc-level-3"><a href="#ps-options-help">ps [options] [--help]</a></li><li class="toc-level-3"><a href="#%e5%88%97">列:</a></li><li class="toc-level-3"><a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86">进程管理</a></li></ol></nav><div class="terminal-article-body"><article class="article-sheet"><header class="article-header"><div class="article-meta"><a class="article-category" href="/categories/codeing/">Codeing</a><time datetime="2022-01-10T15:51:52+08:00">创建于 2022年1月10日</time></div><h1>ps命令</h1><p class="article-summary">ps命令随记</p><div class="article-tags" aria-label="文章标签"><a href="/tags/linux/"># linux</a></div><div class="article-divider" aria-hidden="true"></div></header><div class="prose"><h3 id="ps-options-help">ps [options] [--help]</h3><blockquote><p>ps 的参数,非常多, 在此仅列出几个常用的参数</p></blockquote><pre><code class="language-shell">-A 列出所有的行程
+-w 显示加宽可以显示较多的资讯
+-au 显示较详细的资讯
+-aux 显示所有包含其他使用者的行程
+au(x) 输出格式 :
+USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+USER: 行程拥有者
+PID: pid
+%CPU: 占用的 CPU 使用率
+%MEM: 占用的记忆体使用率
+VSZ: 占用的虚拟记忆体大小
+RSS: 占用的记忆体大小
+TTY: 终端的次要装置号码 (minor device number of tty)
+STAT: 该行程的状态:
+D: 无法中断的休眠状态 (通常 IO 的进程)
+R: 正在执行中
+S: 静止状态
+T: 暂停执行
+Z: 不存在但暂时无法消除
+W: 没有足够的记忆体分页可分配
+&lt;: 高优先序的行程
+N: 低优先序的行程
+L: 有记忆体分页分配并锁在记忆体内 (实时系统或捱A I/O)
+START: 行程开始时间
+TIME: 执行的时间
+COMMAND:所执行的指令
+</code></pre><h3 id="列">列:</h3><blockquote><p>显示所有包含其他使用者的行程</p></blockquote><pre><code class="language-shell">ps -aux
+</code></pre><blockquote><p>使用内存前10</p></blockquote><pre><code class="language-shell">#  比如说sort -k 1 -k 2 test.txt，那么就会根据test.txt文件中的第一列和第二列进行排序。
+# -n：依照数值的大小排序；
+# -r：以相反的顺序来排序
+
+ps aux | sort -k4nr | head -n 10
+</code></pre><blockquote><p>使用CPU前10</p></blockquote><pre><code class="language-shell">ps aux | sort -k3nr | head -n 10
+</code></pre><blockquote><p>查看有 php 标识的相关进程</p></blockquote><pre><code class="language-shell">ps aux | grep &#34;php&#34;
+</code></pre><h3 id="进程管理">进程管理</h3><blockquote><p>杀死进程:</p></blockquote><pre><code class="language-shell"># 根据PID
+pstree PID -p| awk -F&#34;[()]&#34; &#39;{print $2}&#39;| xargs kill -9
+
+# 更具关键词
+ps -aux| grep &#34;xxx&#34; | cut -c 9-15|xargs kill -9
+</code></pre><blockquote><p>发送重启信号:</p></blockquote><pre><code class="language-shell">ps aux | grep &#34;xxx&#34; | awk &#39;{print $2}&#39; | xargs kill -USR1
+</code></pre><blockquote><p>查看进程信息:</p></blockquote><pre><code class="language-shell">ls -l /proc/PID
+</code></pre></div></article><nav class="article-nav" aria-label="文章前后导航"><div><span>上一篇</span><a href="/blog/legacy-69/">← linux开机自启</a></div><div><span>下一篇</span><a href="/blog/legacy-67/">使用秘钥登录Linux主机 →</a></div></nav><section class="comments" aria-labelledby="comments-title"><div class="section-kicker">Conversation</div><h2 id="comments-title">讨论这篇内容</h2><p class="comments-note">评论由 GitHub Discussions 提供 · <a href="https://github.com/putyy/net-switch/discussions" target="_blank" rel="noopener noreferrer">打开讨论仓库</a></p><p class="comments-setup">评论功能已开启，但还缺少 giscus 的仓库 ID 或讨论分类 ID。请在控制台“设置 → SEO 与评论”中，从 <a href="https://giscus.app/" target="_blank" rel="noopener noreferrer">giscus.app</a> 复制并保存这两个 ID。</p></section></div></main><footer class="site-footer"><div class="site-frame footer-inner"><div><strong>putyy</strong><p>在代码与文字之间，保留一块安静、可长期生长的地方。</p></div><div class="footer-credits"><p>© 2026 · 由 <a href="https://github.com/putyy/bookx" target="_blank" rel="noopener noreferrer">BookX</a> 生成</p><p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">渝ICP备18003571号-2</a></p></div></div></footer></body></html>
